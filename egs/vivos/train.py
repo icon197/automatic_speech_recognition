@@ -1,3 +1,6 @@
+import os
+import sys
+sys.path.append(os.getcwd() + "/../..")
 from egs.vivos.extension.model import KaldiSpeechRecognition
 from os.path import join, dirname
 import argparse
