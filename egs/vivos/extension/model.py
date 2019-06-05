@@ -6,10 +6,6 @@ from itertools import groupby
 
 from os.path import dirname
 
-N_TRAIN = 100
-N_TEST = 10
-
-
 class KaldiSpeechRecognition:
     def __init__(self,
                  corpus_folder,
