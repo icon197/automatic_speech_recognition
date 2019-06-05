@@ -1,6 +1,5 @@
-import os
 import sys
-sys.path.append(os.getcwd() + "/../..")
+sys.path.append("/content/automatic_speech_recognition")
 from egs.vivos.extension.model import KaldiSpeechRecognition
 from os.path import join, dirname
 import argparse
