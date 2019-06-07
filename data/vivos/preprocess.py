@@ -97,6 +97,9 @@ def create_speaker():
     open("corpus/test/speaker", "w").write(content)
 
 
+def cpy_plus_text():
+    shutil.copy2("plus.txt", "corpus/plus.txt")
+
 try:
     shutil.rmtree("corpus")
 except:
@@ -111,3 +114,4 @@ finally:
     create_test_text()
     create_gender()
     create_speaker()
+    cpy_plus_text()

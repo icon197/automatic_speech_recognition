@@ -191,8 +191,9 @@ class KaldiSpeechRecognition:
         # decode.conf
         configs = [
             "first_beam=10.0",
-            "beam=13.0",
-            "lattice_beam=6.0"
+            "beam=12.0",
+            "lattice_beam=6.0",
+            "max-active-states=14000"
         ]
         content = "\n".join(configs)
         outfile = "{}/conf/decode.config".format(self.tmp_folder)
@@ -230,8 +231,11 @@ class KaldiSpeechRecognition:
         train_text = open(train_text_file).read().splitlines()[:self.N_TRAIN]
         test_text_file = "{}/test/text".format(self.corpus_folder)
         test_text = open(test_text_file).read().splitlines()[:self.N_TEST]
+        plus_text_file = "{}/plus.txt".format(self.corpus_folder)
+        plus_text = open(plus_text_file).read().splitlines()
         text = train_text + test_text
         text = [item.split("|")[1] for item in text]
+        text += plus_text
         content = "\n".join(text)
         open("{}/data/local/corpus.txt".format(self.tmp_folder), "w").write(
             content)
