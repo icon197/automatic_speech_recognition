@@ -107,6 +107,7 @@ def predict(kaldi_folder, wav_file, model_path, method="delta", utils_path=None)
                   ark:transcriptions/splice-feats.ark \
                   ark:transcriptions/splice-transform-feats.ark".format(model, kaldi_folder))
         os.system("cd {}/predict; {}/src/gmmbin/gmm-latgen-faster \
+                        --max-active=14000 --beam=12.0 --lattice_beam=6.0 \
                           --word-symbol-table=experiment/triphones_deldel/graph/words.txt \
                           experiment/triphones_deldel/final.mdl experiment/triphones_deldel/graph/HCLG.fst \
                           ark:transcriptions/splice-transform-feats.ark ark,t:transcriptions/lattices.ark" \
