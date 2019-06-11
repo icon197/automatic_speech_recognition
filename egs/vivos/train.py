@@ -20,7 +20,7 @@ def train(kaldi_folder, corpus_folder, export_folder=None, nj=1, method="deltade
     params = {
         "method": method,
         "jobs": nj,
-        "lm_order": 3
+        "lm_order": 2
     }
     model = KaldiSpeechRecognition(corpus_folder, kaldi_folder, params)
     model.fit()
