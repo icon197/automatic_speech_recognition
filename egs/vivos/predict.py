@@ -113,22 +113,22 @@ def predict(kaldi_folder, wav_file, model_path, method="delta", utils_path=None)
                           ark:transcriptions/splice-transform-feats.ark ark,t:transcriptions/lattices.ark" \
                   .format(model, kaldi_folder))
     elif method == "sgmm":
-        os.system("cd {};cp final.mat predict/experiment/triphones_deldel/final.mat;".format(model))
+        # os.system("cd {};cp final.mat predict/experiment/triphones_deldel/final.mat;".format(model))
 
-        os.system("cd {}/predict; {}/src/featbin/splice-feats \
-               scp:transcriptions/feats.scp \
-               ark:transcriptions/splice-feats.ark".format(model, kaldi_folder))
-        os.system("cd {}/predict; {}/src/featbin/transform-feats \
-                  experiment/triphones_deldel/final.mat \
-                  ark:transcriptions/splice-feats.ark \
-                  ark:transcriptions/splice-transform-feats.ark".format(model, kaldi_folder))
-        os.system("cd {}/predict; {}/src/sgmm2bin/sgmm2-latgen-faster \
-                        --max-active=14000 --beam=12.0 --lattice_beam=6.0 --acoustic-scale=0.083333 --allow-partial=true\
-                        --word-symbol-table=experiment/triphones_deldel/graph/words.txt \
-                        --gselect=ark,s,cs:gunzip -c {}/decode/gselect.1.gz \
-                          experiment/triphones_deldel/final.mdl experiment/triphones_deldel/graph/HCLG.fst \
-                          ark:transcriptions/splice-transform-feats.ark ark,t:transcriptions/lattices.ark" \
-                  .format(model, model, kaldi_folder))
+        # os.system("cd {}/predict; {}/src/featbin/splice-feats \
+        #        scp:transcriptions/feats.scp \
+        #        ark:transcriptions/splice-feats.ark".format(model, kaldi_folder))
+        # os.system("cd {}/predict; {}/src/featbin/transform-feats \
+        #           experiment/triphones_deldel/final.mat \
+        #           ark:transcriptions/splice-feats.ark \
+        #           ark:transcriptions/splice-transform-feats.ark".format(model, kaldi_folder))
+        # os.system("cd {}/predict; {}/src/sgmm2bin/sgmm2-latgen-faster \
+        #                 --max-active=14000 --beam=12.0 --lattice_beam=6.0 --acoustic-scale=0.083333 --allow-partial=true\
+        #                 --word-symbol-table=experiment/triphones_deldel/graph/words.txt \
+        #                 --gselect=ark,s,cs:gunzip -c {}/decode/gselect.1.gz \
+        #                   experiment/triphones_deldel/final.mdl experiment/triphones_deldel/graph/HCLG.fst \
+        #                   ark:transcriptions/splice-transform-feats.ark ark,t:transcriptions/lattices.ark" \
+        #           .format(model, model, kaldi_folder))
     else:
         raise Exception("The given method {} is not supported yet".format(method))
 
