@@ -113,7 +113,7 @@ def predict(kaldi_folder, wav_file, model_path, method="delta", utils_path=None)
                           ark:transcriptions/splice-transform-feats.ark ark,t:transcriptions/lattices.ark" \
                   .format(model, kaldi_folder))
     elif method == "sgmm":
-        # os.system("cd {};cp final.mat predict/experiment/triphones_deldel/final.mat;".format(model))
+        os.system("cd {};cp final.mat predict/experiment/triphones_deldel/final.mat;".format(model))
 
         # os.system("cd {}/predict; {}/src/featbin/splice-feats \
         #        scp:transcriptions/feats.scp \
