@@ -187,7 +187,7 @@ echo
 
 START=$(date +%s);
 steps/train_lda_mllt.sh --cmd "$train_cmd" 2500 20000 \
-  data/train data/lang exp/tri1a_ali exp/tri2b || exit 1;
+  data/train data/lang exp/tri1_ali exp/tri2b || exit 1;
 END=$(date +%s);
 TRI2B_TRAINING_TIME=$((END - START))
 
