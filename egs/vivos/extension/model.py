@@ -192,8 +192,7 @@ class KaldiSpeechRecognition:
         configs = [
             "first_beam=10.0",
             "beam=12.0",
-            "lattice_beam=6.0",
-            "max-active=14000"
+            "lattice_beam=6.0"
         ]
         content = "\n".join(configs)
         outfile = "{}/conf/decode.config".format(self.tmp_folder)
@@ -267,6 +266,12 @@ class KaldiSpeechRecognition:
         shutil.copy2(
             "{}/path.sh".format(pwd),
             "{}/path.sh".format(self.tmp_folder)
+        )
+
+        # vocab
+        shutil.copy2(
+            "{}/viet72k.txt".format(self.corpus_folder),
+            "{}/viet72k.txt".format(self.tmp_folder)
         )
 
         # run.sh
