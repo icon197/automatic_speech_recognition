@@ -66,26 +66,33 @@ echo "===== LANGUAGE MODEL CREATION ====="
 echo "===== MAKING lm.arpa ====="
 echo
 
-loc=`which ngram-count`;
-if [ -z $loc ]; then
-   if uname -a | grep 64 >/dev/null; then
-           sdir=$KALDI_ROOT/tools/srilm/bin/i686-m64
-   else
-                   sdir=$KALDI_ROOT/tools/srilm/bin/i686
-   fi
-   if [ -f $sdir/ngram-count ]; then
-                   echo "Using SRILM language modelling tool from $sdir"
-                   export PATH=$PATH:$sdir
-   else
-                   echo "SRILM toolkit is probably not installed.
-                           Instructions: tools/install_srilm.sh"
-                   exit 1
-   fi
-fi
+# loc=`which ngram-count`;
+# if [ -z $loc ]; then
+#    if uname -a | grep 64 >/dev/null; then
+#            sdir=$KALDI_ROOT/tools/srilm/bin/i686-m64
+#    else
+#                    sdir=$KALDI_ROOT/tools/srilm/bin/i686
+#    fi
+#    if [ -f $sdir/ngram-count ]; then
+#                    echo "Using SRILM language modelling tool from $sdir"
+#                    export PATH=$PATH:$sdir
+#    else
+#                    echo "SRILM toolkit is probably not installed.
+#                            Instructions: tools/install_srilm.sh"
+#                    exit 1
+#    fi
+# fi
+
+# local=data/local
+# mkdir $local/tmp
+# ngram-count -order $lm_order -vocab viet72k.txt -write-vocab $local/tmp/vocab-full.txt -wbdiscount1 -wbdiscount2 -wbdiscount3 -text $local/corpus.txt -lm $local/tmp/lm.arpa -unk
+
+sdir=$KALDI_ROOT/tools/kenlm/bin
+export PATH=$PATH:$sdir
 
 local=data/local
 mkdir $local/tmp
-ngram-count -order $lm_order -vocab viet72k.txt -write-vocab $local/tmp/vocab-full.txt -wbdiscount1 -wbdiscount2 -wbdiscount3 -text $local/corpus.txt -lm $local/tmp/lm.arpa -unk
+lmplz -o $lm_order --interpolate_unigrams 0 --prune 0 0 1 -S 80% --limit_vocab_file viet72k.txt --text $local/corpus.txt --arpa $local/tmp/lm.arpa
 
 echo
 echo "===== MAKING G.fst ====="
