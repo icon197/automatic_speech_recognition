@@ -98,7 +98,7 @@ def create_speaker():
 
 
 def cpy_plus_text():
-    shutil.copy2("plus_big.txt", "corpus/plus.txt")
+    shutil.copy2("plus3.txt", "corpus/plus.txt")
     shutil.copy2("viet72k.txt", "corpus/viet72k.txt")
 
 try:
