@@ -92,7 +92,7 @@ export PATH=$PATH:$sdir
 
 local=data/local
 mkdir $local/tmp
-lmplz -o $lm_order --interpolate_unigrams 0 --skip_symbols -S 80% --limit_vocab_file viet72k.txt --text $local/corpus.txt --arpa $local/tmp/tmp_lm.arpa
+lmplz -o $lm_order -S 80% --text $local/corpus.txt --arpa $local/tmp/tmp_lm.arpa
 filter union model:$local/tmp/tmp_lm.arpa $local/tmp/lm.arpa <viet72k.txt
 
 echo
