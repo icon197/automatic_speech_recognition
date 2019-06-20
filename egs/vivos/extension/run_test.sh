@@ -59,7 +59,7 @@ echo
 # optional_silence.txt  [<phone>]
 
 # Preparing language data
-utils/prepare_lang.sh data/local/dict "<UNK>" data/local/lang data/lang
+utils/prepare_lang.sh data/local/dict "<unk>" data/local/lang data/lang
 
 echo
 echo "===== LANGUAGE MODEL CREATION ====="
