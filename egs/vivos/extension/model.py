@@ -274,6 +274,12 @@ class KaldiSpeechRecognition:
             "{}/viet72k.txt".format(self.tmp_folder)
         )
 
+        # lm
+        shutil.copy2(
+            "{}/lm.arpa".format(self.corpus_folder),
+            "{}/lm.arpa".format(self.tmp_folder)
+        )
+
         # run.sh
         content = open("{}/run_{}.sh".format(pwd, self.method)).read()
         script_file = "{}/run.sh".format(self.tmp_folder)
