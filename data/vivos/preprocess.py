@@ -100,6 +100,7 @@ def create_speaker():
 def cpy_plus_text():
     shutil.copy2("plus_full.txt", "corpus/plus.txt")
     shutil.copy2("viet72k.txt", "corpus/viet72k.txt")
+    shutil.copy2("lm.arpa", "corpus/lm.arpa")
 
 try:
     shutil.rmtree("corpus")
