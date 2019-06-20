@@ -201,7 +201,14 @@ class KaldiSpeechRecognition:
         # mfcc.conf
         configs = [
             "--use-energy=false  # only non-default option.",
-            "--sample-frequency=16000"
+            "--sample-frequency=16000",
+            "--num-mel-bins=40",
+            "--frame-length=25",
+            "--frame-shift=10",
+            "--high-freq=0",
+            "--low-freq=0",
+            "--num-ceps=13",
+            "--window-type=hamming"
         ]
         content = "\n".join(configs)
         outfile = "{}/conf/mfcc.conf".format(self.tmp_folder)
