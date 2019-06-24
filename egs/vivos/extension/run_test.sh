@@ -162,34 +162,34 @@ steps/align_si.sh --nj $nj --cmd "$train_cmd" \
 END=$(date +%s);
 TRI1_ALIGNMENT_TIME=$((END - START))
 
-echo
-echo "===== TRI2A TRAINING ====="
-echo
+# echo
+# echo "===== TRI2A TRAINING ====="
+# echo
 
-START=$(date +%s);
-steps/train_deltas.sh --cmd "$train_cmd" 2500 20000 \
-  data/train data/lang exp/tri1_ali exp/tri2a || exit 1
-END=$(date +%s);
-TRI2A_TRAINING_TIME=$((END - START))
+# START=$(date +%s);
+# steps/train_deltas.sh --cmd "$train_cmd" 2500 20000 \
+#   data/train data/lang exp/tri1_ali exp/tri2a || exit 1
+# END=$(date +%s);
+# TRI2A_TRAINING_TIME=$((END - START))
 
-echo
-echo "===== TRI2A DECODING ====="
-echo
+# echo
+# echo "===== TRI2A DECODING ====="
+# echo
 
-START=$(date +%s);
-utils/mkgraph.sh data/lang exp/tri2a exp/tri2a/graph || exit 1
-END=$(date +%s);
-TRI2A_DECODING_TIME=$((END - START))
+# START=$(date +%s);
+# utils/mkgraph.sh data/lang exp/tri2a exp/tri2a/graph || exit 1
+# END=$(date +%s);
+# TRI2A_DECODING_TIME=$((END - START))
 
-echo
-echo "===== TRI2A ALIGNMENT ====="
-echo
+# echo
+# echo "===== TRI2A ALIGNMENT ====="
+# echo
 
-START=$(date +%s);
-steps/align_si.sh --nj $nj --cmd "$train_cmd" \
-  data/train data/lang exp/tri2a exp/tri2a_ali || exit 1;
-END=$(date +%s);
-TRI2A_ALIGNMENT_TIME=$((END - START))
+# START=$(date +%s);
+# steps/align_si.sh --nj $nj --cmd "$train_cmd" \
+#   data/train data/lang exp/tri2a exp/tri2a_ali || exit 1;
+# END=$(date +%s);
+# TRI2A_ALIGNMENT_TIME=$((END - START))
 
 echo
 echo "===== TRI2B TRAINING ====="
@@ -222,36 +222,36 @@ steps/align_fmllr.sh --nj $nj --cmd "$train_cmd" \
 END=$(date +%s);
 TRI2B_ALIGNMENT_TIME=$((END - START))
 
-echo
-echo "===== TRI3A TRAINING ====="
-echo
+# echo
+# echo "===== TRI3A TRAINING ====="
+# echo
 
-START=$(date +%s);
-steps/train_lda_mllt.sh --cmd "$train_cmd" 2500 20000 \
-  data/train data/lang exp/tri2a_ali exp/tri3a || exit 1;
-END=$(date +%s);
-TRI3A_TRAINING_TIME=$((END - START))
+# START=$(date +%s);
+# steps/train_lda_mllt.sh --cmd "$train_cmd" 2500 20000 \
+#   data/train data/lang exp/tri2a_ali exp/tri3a || exit 1;
+# END=$(date +%s);
+# TRI3A_TRAINING_TIME=$((END - START))
 
-echo
-echo "===== TRI3A DECODING ====="
-echo
+# echo
+# echo "===== TRI3A DECODING ====="
+# echo
 
-START=$(date +%s);
-utils/mkgraph.sh data/lang exp/tri3a exp/tri3a/graph || exit 1
-steps/decode.sh --config conf/decode.config --nj 1 --cmd "$decode_cmd" \
-  exp/tri3a/graph data/test exp/tri3a/decode
-END=$(date +%s);
-TRI3A_DECODING_TIME=$((END - START))
+# START=$(date +%s);
+# utils/mkgraph.sh data/lang exp/tri3a exp/tri3a/graph || exit 1
+# steps/decode.sh --config conf/decode.config --nj 1 --cmd "$decode_cmd" \
+#   exp/tri3a/graph data/test exp/tri3a/decode
+# END=$(date +%s);
+# TRI3A_DECODING_TIME=$((END - START))
 
-echo
-echo "===== TRI3A ALIGNMENT ====="
-echo
+# echo
+# echo "===== TRI3A ALIGNMENT ====="
+# echo
 
-START=$(date +%s);
-steps/align_fmllr.sh --nj $nj --cmd "$train_cmd" \
-  data/train data/lang exp/tri3a exp/tri3a_ali || exit 1;
-END=$(date +%s);
-TRI3A_ALIGNMENT_TIME=$((END - START))
+# START=$(date +%s);
+# steps/align_fmllr.sh --nj $nj --cmd "$train_cmd" \
+#   data/train data/lang exp/tri3a exp/tri3a_ali || exit 1;
+# END=$(date +%s);
+# TRI3A_ALIGNMENT_TIME=$((END - START))
 
 echo
 echo "===== run.sh script is finished ====="
@@ -273,20 +273,20 @@ echo $TRI1_TRAINING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
 echo $TRI1_DECODING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
 echo $TRI1_ALIGNMENT_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
 
-echo "Tri2a" >> $log_file
-echo $TRI2A_TRAINING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
-echo $TRI2A_DECODING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
-echo $TRI2A_ALIGNMENT_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
+# echo "Tri2a" >> $log_file
+# echo $TRI2A_TRAINING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
+# echo $TRI2A_DECODING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
+# echo $TRI2A_ALIGNMENT_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
 
 echo "Tri2b" >> $log_file
 echo $TRI2B_TRAINING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
 echo $TRI2B_DECODING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
 echo $TRI2B_ALIGNMENT_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
 
-echo "Tri3a" >> $log_file
-echo $TRI3A_TRAINING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
-echo $TRI3A_DECODING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
-echo $TRI3A_ALIGNMENT_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
+# echo "Tri3a" >> $log_file
+# echo $TRI3A_TRAINING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
+# echo $TRI3A_DECODING_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
+# echo $TRI3A_ALIGNMENT_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file
 
 echo "Total time:" >> $log_file
 echo $EXP_TIME | awk '{print int($1/60)":"int($1%60)}' >> $log_file

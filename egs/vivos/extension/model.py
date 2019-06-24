@@ -190,7 +190,6 @@ class KaldiSpeechRecognition:
 
         # decode.conf
         configs = [
-            "first_beam=10.0",
             "beam=12.0",
             "lattice_beam=6.0"
         ]
