@@ -102,7 +102,7 @@ echo
 
 lang=data/lang
 # arpa2fst --disambig-symbol=#0 --read-symbol-table=$lang/words.txt $local/tmp/lm.arpa $lang/G.fst
-arpa2fst --disambig-symbol=#0 $local/tmp/lm.arpa $lang/G.fst
+arpa2fst $local/tmp/lm.arpa $lang/G.fst
 
 echo
 echo "===== MONO TRAINING ====="
