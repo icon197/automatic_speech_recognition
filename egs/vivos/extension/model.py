@@ -236,7 +236,7 @@ class KaldiSpeechRecognition:
         train_text = open(train_text_file).read().splitlines()[:self.N_TRAIN]
         test_text_file = "{}/test/text".format(self.corpus_folder)
         test_text = open(test_text_file).read().splitlines()[:self.N_TEST]
-        plus_text_file = "{}/plus_big.txt".format(self.corpus_folder)
+        plus_text_file = "{}/plus.txt".format(self.corpus_folder)
         plus_text = open(plus_text_file).read().splitlines()
         dict_text_file = "{}/viet72k.txt".format(self.corpus_folder)
         dict_text = open(dict_text_file).read().splitlines()
